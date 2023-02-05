@@ -596,7 +596,7 @@ docopilot(void *arg)
 		static size_t sizereq=0; size_t nreq=0; static char *req=NULL;
 		unsigned iline=0,icharline=0; for (unsigned i=0; i<icurcopy; i++) { if (transcriptcopy[i]=='\n') iline++,icharline=0; else icharline++; }
 		char *part; int npart;
-		npart = strlen(part=sprintfs("{\"params\":{\"textDocument\":{\"uri\":\"file:\\/\\/%s\",\"languageId\":\"sh\",\"relativePath\":\"%1$s\"},\"doc\":{\"languageId\":\"sh\",\"relativePath\":\"%1$s\",\"uri\":\"file:\\/\\/%1$s\",\"insertSpaces\":false,\"position\":{\"character\":%u,\"line\":%u},\"path\":\"%1$s\",\"indentSize\":2,\"tabSize\":2,\"source\":\"",pathdummyesc,icharline,iline));
+		npart = strlen(part=sprintfs("{\"params\":{\"textDocument\":{\"uri\":\"file:\\/\\/%s\",\"languageId\":\"sh\",\"relativePath\":\"%1$s\"},\"doc\":{\"version\":0,\"languageId\":\"sh\",\"relativePath\":\"%1$s\",\"uri\":\"file:\\/\\/%1$s\",\"insertSpaces\":false,\"position\":{\"character\":%u,\"line\":%u},\"path\":\"%1$s\",\"indentSize\":2,\"tabSize\":2,\"source\":\"",pathdummyesc,icharline,iline));
 		if (sizereq<nreq+npart && !(req=realloc(req,sizereq=(nreq+npart)*2))) { fprintf(stderr,"cpwrap: realloc docopilot req %zu: %s\n",sizereq,strerror(errno)); exit(1); }
 		memcpy(req+nreq,part,npart), nreq+=npart;
 		if (sizereq<nreq+(ntranscriptcopy*6) && !(req=realloc(req,sizereq=(nreq+(ntranscriptcopy*6))*2))) { fprintf(stderr,"cpwrap: realloc docopilot req %zu: %s\n",sizereq,strerror(errno)); exit(1); }
